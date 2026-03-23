@@ -8,7 +8,10 @@ services:
     working_dir: /var/www/symfony
     # Extensions nécessaires pour Symfony + Doctrine MySQL
     command: >
-      sh -c "docker-php-ext-install pdo pdo_mysql && php-fpm"
+      sh -c "apt-get update &&
+             apt-get install -y --no-install-recommends libzip-dev &&
+             docker-php-ext-install pdo_mysql zip &&
+             php-fpm"
 
   # ─── Nginx pour Symfony ────────────────────────────────────────
   nginx:
